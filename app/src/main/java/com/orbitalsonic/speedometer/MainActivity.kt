@@ -64,7 +64,6 @@ class MainActivity : AppCompatActivity() {
                 requestLocationPermissions()
             }
         }
-
     }
 
     private fun  settingViews(mLocationString:String){
