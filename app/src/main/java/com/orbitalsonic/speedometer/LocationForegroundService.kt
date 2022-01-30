@@ -13,11 +13,10 @@ import androidx.core.app.ActivityCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.location.*
-import com.orbitalsonic.speedometer.Constants.ACTION_LOCATION_FOREGROUND_BROADCAST
-import com.orbitalsonic.speedometer.Constants.EXTRA_LOCATION
-import com.orbitalsonic.speedometer.Constants.FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS
-import com.orbitalsonic.speedometer.Constants.UPDATE_INTERVAL_IN_MILLISECONDS
-import java.util.*
+import com.orbitalsonic.speedometer.ConstantsUtils.ACTION_LOCATION_FOREGROUND_BROADCAST
+import com.orbitalsonic.speedometer.ConstantsUtils.EXTRA_LOCATION
+import com.orbitalsonic.speedometer.ConstantsUtils.FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS
+import com.orbitalsonic.speedometer.ConstantsUtils.UPDATE_INTERVAL_IN_MILLISECONDS
 
 class LocationForegroundService : Service() {
     private val TAG = "LocationTag"

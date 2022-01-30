@@ -12,12 +12,11 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.github.anastr.speedviewlib.AwesomeSpeedometer
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
-import com.orbitalsonic.speedometer.Constants.LOCATION_PERMISSIONS_REQUEST_CODE
-import com.orbitalsonic.speedometer.Constants.newLatLong
-import com.orbitalsonic.speedometer.Constants.oldLatLong
+import com.orbitalsonic.speedometer.ConstantsUtils.LOCATION_PERMISSIONS_REQUEST_CODE
+import com.orbitalsonic.speedometer.ConstantsUtils.newLatLong
+import com.orbitalsonic.speedometer.ConstantsUtils.oldLatLong
 import com.orbitalsonic.speedometer.databinding.ActivityMainBinding
 import kotlin.math.*
 
@@ -25,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var speedometer: AwesomeSpeedometer
     private var isFirstLocation = true
 
     private var locationForegroundService: LocationForegroundService? = null
@@ -51,8 +49,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
-        speedometer = findViewById(R.id.speedView)
 
         foregroundBroadcastReceiver = ForegroundBroadcastReceiver()
         serviceIntent = Intent(this, LocationForegroundService::class.java)
@@ -107,7 +103,7 @@ class MainActivity : AppCompatActivity() {
         // meter per second 5 is in second
         val speedMPS:Float = (distanceInMeters/5).toFloat()
         val speedKMPH:Float = (speedMPS * 3.6).toFloat()
-        speedometer.speedTo(50F)
+        binding.speedView.speedTo(50F)
 
         Log.i("ServiceTesting","Speed:$speedKMPH")
     }
@@ -138,7 +134,7 @@ class MainActivity : AppCompatActivity() {
         LocalBroadcastManager.getInstance(this).registerReceiver(
             foregroundBroadcastReceiver,
             IntentFilter(
-                Constants.ACTION_LOCATION_FOREGROUND_BROADCAST
+                ConstantsUtils.ACTION_LOCATION_FOREGROUND_BROADCAST
             )
         )
     }
@@ -152,7 +148,7 @@ class MainActivity : AppCompatActivity() {
     private inner class ForegroundBroadcastReceiver : BroadcastReceiver() {
 
         override fun onReceive(context: Context, intent: Intent) {
-            val mLocation = intent.getStringExtra(Constants.EXTRA_LOCATION)
+            val mLocation = intent.getStringExtra(ConstantsUtils.EXTRA_LOCATION)
 
             if (mLocation != null) {
                 settingViews(mLocation)

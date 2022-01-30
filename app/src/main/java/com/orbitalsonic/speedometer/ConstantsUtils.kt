@@ -2,7 +2,7 @@ package com.orbitalsonic.speedometer
 
 import com.google.android.gms.maps.model.LatLng
 
-object Constants {
+object ConstantsUtils {
 
     const val LOCATION_PERMISSIONS_REQUEST_CODE = 34
 
