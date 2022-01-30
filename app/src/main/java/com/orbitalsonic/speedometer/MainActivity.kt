@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
         // meter per second 5 is in second
         val speedMPS:Float = (distanceInMeters/5).toFloat()
         val speedKMPH:Float = (speedMPS * 3.6).toFloat()
-        binding.speedView.speedTo(50F)
+        binding.speedView.speedTo(speedKMPH)
 
         Log.i("ServiceTesting","Speed:$speedKMPH")
     }
